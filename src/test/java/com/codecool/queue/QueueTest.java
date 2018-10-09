@@ -3,6 +3,8 @@ package com.codecool.queue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.EmptyStackException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class QueueTest {
@@ -38,5 +40,19 @@ public class QueueTest {
         queue.enqueue("third");
         queue.dequeue();
         assertEquals("second", queue.peek());
+    }
+
+    @Test
+    void testSize() {
+        queue.enqueue("first");
+        queue.enqueue("second");
+        queue.enqueue("third");
+        queue.dequeue();
+        assertEquals(2, queue.size());
+    }
+
+    @Test
+    void testDequeueWhenEmpty() {
+        assertThrows(EmptyStackException.class, () -> queue.dequeue());
     }
 }

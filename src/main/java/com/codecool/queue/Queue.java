@@ -1,5 +1,7 @@
 package com.codecool.queue;
 
+import java.util.EmptyStackException;
+
 public class Queue {
     private Node head;
     private Node tail;
@@ -25,17 +27,21 @@ public class Queue {
 
 
     public String peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         return head.getValue();
     }
 
     public String dequeue() {
         String firstItem = peek();
         head = head.getNext();
+        size--;
         return firstItem;
     }
 
     public int size() {
-        return 0;
+        return this.size;
     }
 
     public boolean isEmpty() {
