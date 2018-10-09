@@ -25,11 +25,13 @@ public class Queue {
 
 
     public String peek() {
-        return "";
+        return head.getValue();
     }
 
     public String dequeue() {
-        return "";
+        String firstItem = peek();
+        head = head.getNext();
+        return firstItem;
     }
 
     public int size() {
