@@ -55,4 +55,13 @@ public class QueueTest {
     void testDequeueWhenEmpty() {
         assertThrows(EmptyStackException.class, () -> queue.dequeue());
     }
+
+    @Test
+    void testPriorities() {
+        queue.enqueue("first", 2);
+        queue.enqueue("second", 3);
+        queue.enqueue("third", 1);
+        String result = " third first second";
+        assertEquals(result, queue.toString());
+    }
 }

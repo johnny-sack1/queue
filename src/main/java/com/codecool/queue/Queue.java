@@ -25,6 +25,29 @@ public class Queue {
         size++;
     }
 
+    public void enqueue(String value, int priority) {
+        Node newNode = new Node(value, priority);
+
+        if (isEmpty()) {
+            head = newNode;
+            tail = head;
+        }
+        else if (head.getPriority() > priority) {
+            Node temp = head;
+            head = newNode;
+            head.setNext(temp);
+        }
+        else {
+            Node current = head;
+            while (current.getNext() != null && current.getPriority() <= priority) {
+                current = current.getNext();
+            }
+            current.setNext(newNode);
+            tail = current.getNext();
+        }
+        size++;
+    }
+
 
     public String peek() {
         if (isEmpty()) {
